@@ -66,7 +66,8 @@ class MockActiveLearner:
         self.score_return = score_return
 
     def fit(self, *args, **kwargs):
-        pass
+        self.fitted = True
+        return True
 
     def predict(self, *args, **kwargs):
         return self.predict_return
@@ -106,8 +107,8 @@ class MockCommittee:
         return self.n_learners
 
     def __iter__(self):
-        for x in range(self.n_learners):
-            yield x
+        for _ in range(self.n_learners):
+            yield shelf
 
     def _calculate_disagreement(self, *args, **kwargs):
         return self.calculate_disagreement_return
